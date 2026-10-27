@@ -9,6 +9,42 @@
 </head>
 
 <body>
+    <div id="age-check" class="age-check">
+  <h1>ЗАБРОШЕННАЯ ШКОЛА</h1>
+  <p>Тебе уже исполнилось 18 лет?</p>
+  <button onclick="checkAge()">Да, мне 18 или больше</button>
+  <button onclick="denyAge()">Нет, мне меньше 18</button>
+  <p id="age-message"></p>
+</div>
+
+<script>
+function checkAge() {
+  const age = prompt("Сколько тебе лет?");
+  if (age === null || age.trim() === "") return;
+
+  const number = Number(age);
+
+  if (!Number.isInteger(number) || number < 0) {
+    document.getElementById("age-message").textContent =
+      "Введи корректный возраст.";
+  } else if (number < 18) {
+    document.getElementById("age-message").textContent =
+      "Доступ закрыт. Эта история предназначена для совершеннолетних.";
+  } else {
+    document.getElementById("age-check").style.display = "none";
+    document.getElementById("school").style.display = "block";
+  }
+}
+
+function denyAge() {
+  document.getElementById("age-message").textContent =
+    "Доступ закрыт.";
+}
+</script>
+
+    <div class="school" class="school"style="display: none;">
+
+        
     <div class="fog fog-one"></div>
     <div class="fog fog-two"></div>
 
