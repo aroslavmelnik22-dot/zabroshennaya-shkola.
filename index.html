@@ -9,42 +9,35 @@
 </head>
 
 <body>
-    <div id="age-check" class="age-check">
-  <h1>ЗАБРОШЕННАЯ ШКОЛА</h1>
+   
+    <div id="age-check" style="position:fixed;inset:0;z-index:9999;background:#111315;color:#ddd;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;">
+  <h1>АРХИВ № 013</h1>
   <p>Тебе уже исполнилось 18 лет?</p>
-  <button onclick="checkAge()">Да, мне 18 или больше</button>
-  <button onclick="denyAge()">Нет, мне меньше 18</button>
+  <input id="age-input" type="number" placeholder="Введи свой возраст" style="padding:12px;margin:10px;">
+  <button onclick="checkAge()" style="padding:12px;cursor:pointer;">Продолжить</button>
   <p id="age-message"></p>
 </div>
 
 <script>
 function checkAge() {
-  const age = prompt("Сколько тебе лет?");
-  if (age === null || age.trim() === "") return;
+  const age = Number(document.getElementById("age-input").value);
+  const message = document.getElementById("age-message");
 
-  const number = Number(age);
-
-  if (!Number.isInteger(number) || number < 0) {
-    document.getElementById("age-message").textContent =
-      "Введи корректный возраст.";
-  } else if (number < 18) {
-    document.getElementById("age-message").textContent =
-      "Доступ закрыт. Эта история предназначена для совершеннолетних.";
-  } else {
-    document.getElementById("age-check").style.display = "none";
-    document.getElementById("school").style.display = "block";
+  if (!Number.isInteger(age) || age < 1 || age > 120) {
+    message.textContent = "Введи корректный возраст.";
+    return;
   }
-}
 
-function denyAge() {
-  document.getElementById("age-message").textContent =
-    "Доступ закрыт.";
+  if (age < 18) {
+    message.textContent = "Доступ закрыт.";
+    return;
+  }
+
+  document.getElementById("age-check").style.display = "none";
 }
 </script>
-
-    <div id="school" class="school"">
-
-        
+    
+    
     <div class="fog fog-one"></div>
     <div class="fog fog-two"></div>
 
